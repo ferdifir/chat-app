@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-md-4 col-xl-3 chat">
+          <div class="card mb-sm-3 mb-md-0 contacts_card">
+            <div class="card-header">
+              <div class="input-group">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  name=""
+                  class="form-control search"
+                />
+                <div class="input-group-prepend">
+                  <span class="input-group-text search_btn"
+                    ><i class="fas fa-search"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body contacts_body">
+              <ul class="contacts" id="contact-list"></ul>
+            </div>
+            <div class="card-footer"></div>
+          </div>
+        </div>
+        <div class="col-md-8 col-xl-6 chat">
+          <div class="card">
+            <div class="card-header msg_head">
+              <div class="d-flex bd-highlight">
+                <div class="img_cont">
+                  <img
+                    src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                    class="rounded-circle user_img"
+                    id="selected-user-image"
+                  />
+                  <span id="online-status" class="online_icon"></span>
+                </div>
+                <div class="user_info">
+                  <span id="selected-username">Chat with Khalid</span>
+                  <p id="selected-total-message">1767 Messages</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body msg_card_body" id="message-container">
+              <div id="illustration-container" style="text-align: center">
+                <img
+                  src="data:image/png;base64,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"
+                  alt="No Message Selected Illustration"
+                  style="max-width: 200px; height: auto; border-radius: 50%"
+                />
+                <h1 style="font-size: 24px; margin-top: 20px; color: #ffffff">
+                  No Message Selected
+                </h1>
+                <p style="font-size: 16px; color: #ffffff">
+                  Please select a message to start chatting.
+                </p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="input-group">
+                <div class="input-group-append">
+                  <span class="input-group-text attach_btn"
+                    ><i class="fas fa-paperclip"></i
+                  ></span>
+                </div>
+                <textarea
+                  id="message-input"
+                  name=""
+                  class="form-control type_msg"
+                  placeholder="Type your message..."
+                ></textarea>
+                <div class="input-group-append">
+                  <span id="send-message-btn" class="input-group-text send_btn"
+                    ><i class="fas fa-location-arrow"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.mjs" type="module"></script>
+  </body>
+</html>
